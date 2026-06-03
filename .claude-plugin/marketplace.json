@@ -1,0 +1,17 @@
+{
+  "name": "otomata-oto",
+  "owner": {
+    "name": "Otomata",
+    "url": "https://otomata.tech"
+  },
+  "metadata": {
+    "description": "Marketplace du plugin oto — toolkit d'automatisation B2B Otomata (CLI oto + MCP mcp.oto.ninja). Dev local ; distribution publique à venir sur otomata-tech/oto-plugin."
+  },
+  "plugins": [
+    {
+      "name": "oto",
+      "source": "./",
+      "description": "Oto — company data, LinkedIn sourcing & outreach, CRM, enrichment, Google, messaging. MCP auto-configuré + skill universel ; les outils viennent de la CLI oto (--help)."
+    }
+  ]
+}

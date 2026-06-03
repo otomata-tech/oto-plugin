@@ -1,0 +1,11 @@
+{
+  "name": "oto",
+  "version": "0.1.0",
+  "description": "Oto — B2B automation toolkit: company data, LinkedIn sourcing & outreach, CRM, enrichment, Google Workspace, messaging. Bundles the Oto MCP connector (auto-configured) + one universal skill; the `oto` CLI provides the tools, self-documented via --help.",
+  "author": {
+    "name": "Otomata",
+    "url": "https://otomata.tech"
+  },
+  "homepage": "https://github.com/otomata-tech/oto-plugin",
+  "license": "UNLICENSED"
+}

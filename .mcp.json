@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "oto": {
+      "type": "http",
+      "url": "https://mcp.oto.ninja/mcp",
+      "oauth": {
+        "clientId": "gsa09c23qygvnr1dfvdl5",
+        "callbackPort": 8080,
+        "authServerMetadataUrl": "https://auth.oto.zone/.well-known/openid-configuration"
+      }
+    }
+  }
+}
