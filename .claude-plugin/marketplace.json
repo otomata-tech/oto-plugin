@@ -5,13 +5,13 @@
     "url": "https://otomata.tech"
   },
   "metadata": {
-    "description": "Marketplace du plugin oto — toolkit d'automatisation B2B Otomata (CLI oto + MCP mcp.oto.ninja). Dev local ; distribution publique à venir sur otomata-tech/oto-plugin."
+    "description": "Marketplace du plugin oto — compagnon CLI Otomata pour Claude Code (skill universel + /oto:setup). Le MCP s'ajoute dans claude.ai."
   },
   "plugins": [
     {
       "name": "oto",
       "source": "./",
-      "description": "Oto — company data, LinkedIn sourcing & outreach, CRM, enrichment, Google, messaging. MCP auto-configuré + skill universel ; les outils viennent de la CLI oto (--help)."
+      "description": "Oto — compagnon CLI pour Claude Code : skill universel (doctrine + découverte via 'oto --help') + commande /oto:setup. Les outils viennent de la CLI oto ; le MCP s'ajoute dans claude.ai."
     }
   ]
 }
