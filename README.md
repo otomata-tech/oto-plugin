@@ -13,10 +13,13 @@ Installing this plugin gives you:
 - **MCP** (hosted, in Claude): company data, CRM, search, enrichment, Gmail, LinkedIn **read**.
 - **CLI** (local): the same toolkit as commands, **plus LinkedIn outreach** (connect/message), which the MCP doesn't expose.
 
-## Install (dev, local marketplace)
+## Install
 
 ```bash
-claude plugin marketplace add /data/projects/oto-plugin
+# distribution (public github marketplace)
+claude plugin marketplace add otomata-tech/oto-plugin
+# ou dev local (édition en place)
+claude plugin marketplace add /data/oto/plugin
 claude plugin install oto@otomata-oto
 ```
 
