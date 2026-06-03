@@ -9,7 +9,7 @@ Set up the `oto` CLI on this machine so the user can run Oto tools locally (incl
 2. **Prerequisites**:
    - Python ≥ 3.10 (`python3 --version`).
    - `pipx` (`pipx --version`; if missing, install it per the OS and run `pipx ensurepath`).
-   - **Google Chrome** installed (the LinkedIn tools drive it). If absent, tell the user to install Chrome, or install Chromium for Patchright in the CLI venv: `~/.local/share/pipx/venvs/oto-cli/bin/patchright install chromium`.
+   - **Google Chrome** installed — required. The LinkedIn tools drive real Chrome (channel `chrome`); do NOT use Chromium (`patchright install chromium`), LinkedIn flags its fingerprint. If Chrome is absent, tell the user to install Google Chrome and stop.
 
 3. **Install**:
    ```bash
