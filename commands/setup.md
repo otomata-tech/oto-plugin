@@ -24,7 +24,7 @@ Set up the `oto` CLI on this machine so the user can run Oto tools locally (incl
    ```
    Tell them: log in to LinkedIn in the window that opens, confirm you reach your feed, then close the window. The session is saved and reused automatically.
 
-6. **Oto MCP in claude.ai** (optional, for the hosted tools — company data, CRM, search, enrichment, Gmail): this plugin does **not** auto-add it (to avoid a duplicate connector). Tell the user to add it once in **claude.ai** → Settings → Connectors → Add custom connector: URL `https://mcp.oto.ninja/mcp`, OAuth client ID `gsa09c23qygvnr1dfvdl5` (PKCE, no secret). It then also syncs into Claude Code. LinkedIn outreach does not need it (it's CLI-only).
+6. **Oto MCP in claude.ai** (optional, for the hosted tools — company data, CRM, search, enrichment, Gmail): this plugin does **not** auto-add it (to avoid a duplicate connector). Tell the user to add it once in **claude.ai** → Settings → Connectors → Add custom connector: URL `https://mcp.oto.ninja/mcp`, OAuth client ID `7p8h7cypq5mmpwmj2taao` (PKCE, no secret). It then also syncs into Claude Code. LinkedIn outreach does not need it (it's CLI-only).
 
 7. **API keys** (optional): for paid tools (Serper, Hunter, Kaspr…), the user adds their own keys on `app.oto.ninja/account`, or sets them as env vars. LinkedIn needs no key.
 

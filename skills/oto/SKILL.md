@@ -7,7 +7,7 @@ description: "Oto — B2B automation toolkit: research companies & people, Linke
 
 Oto is a B2B automation toolkit with two surfaces, one account:
 
-- **Oto MCP** — hosted tools, available once the `oto` connector is added in claude.ai (URL `https://mcp.oto.ninja/mcp`, client ID `gsa09c23qygvnr1dfvdl5`) — it then syncs into Claude Code too. Covers the API stuff: French company data (`fr_*`), Attio CRM (`attio_*`), web search (`serper_*`), email enrichment (`hunter_*`, `kaspr_*`), Gmail (`gmail_*`), per-user datastore (`data_*`), LinkedIn **read** (`linkedin_scrape_*`, `linkedin_search_*`), etc.
+- **Oto MCP** — hosted tools, available once the `oto` connector is added in claude.ai (URL `https://mcp.oto.ninja/mcp`, client ID `7p8h7cypq5mmpwmj2taao`) — it then syncs into Claude Code too. Covers the API stuff: French company data (`fr_*`), Attio CRM (`attio_*`), web search (`serper_*`), email enrichment (`hunter_*`, `kaspr_*`), Gmail (`gmail_*`), per-user datastore (`data_*`), LinkedIn **read** (`linkedin_scrape_*`, `linkedin_search_*`), etc.
 - **`oto` CLI** — runs locally. Same toolkit as composable commands, **plus LinkedIn outreach** (sending messages / connection invitations), which the MCP does not have.
 
 ## Discover tools — don't guess

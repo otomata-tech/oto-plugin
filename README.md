@@ -27,7 +27,7 @@ claude plugin install oto@otomata-oto
 ## Bootstrap for a new user
 
 1. **Add the Oto MCP in claude.ai** — Settings → Connectors → Add custom connector:
-   URL `https://mcp.oto.ninja/mcp`, OAuth client ID `gsa09c23qygvnr1dfvdl5` (PKCE, no secret).
+   URL `https://mcp.oto.ninja/mcp`, OAuth client ID `7p8h7cypq5mmpwmj2taao` (PKCE, no secret).
    Authenticate (the popup also signs you up). It then also appears inside Claude Code.
 2. **Install this plugin** (above) → Claude Code gets the `oto` skill + `/oto:setup`.
 3. `/oto:setup` → installs the `oto` CLI.
