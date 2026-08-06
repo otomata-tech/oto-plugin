@@ -2,7 +2,7 @@
   "mcpServers": {
     "oto": {
       "type": "http",
-      "url": "https://mcp.oto.ninja/mcp"
+      "url": "https://mcp.oto.cx/mcp"
     }
   }
 }
