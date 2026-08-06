@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "oto": {
+      "type": "http",
+      "url": "https://mcp.oto.ninja/mcp"
+    }
+  }
+}

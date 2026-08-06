@@ -12,6 +12,11 @@
       "name": "oto",
       "source": "./",
       "description": "Oto — compagnon CLI pour Claude Code : skill universel (doctrine + découverte via 'oto --help') + commande /oto:setup. Les outils viennent de la CLI oto ; le MCP s'ajoute dans claude.ai."
+    },
+    {
+      "name": "oto-mcp",
+      "source": "./oto-mcp",
+      "description": "Déclare le MCP Oto hébergé — pour les runtimes qui ne peuvent pas ajouter un connecteur interactivement (Claude Tag dans Slack). Dans claude.ai / Claude Code, ajouter le connecteur là-bas et installer 'oto' à la place."
     }
   ]
 }
