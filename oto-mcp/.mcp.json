@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "oto": {
-      "type": "http",
-      "url": "https://mcp.oto.cx/mcp"
-    }
-  }
-}
