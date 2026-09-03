@@ -1,0 +1,59 @@
+name: CI
+
+# oto-plugin est un plugin Claude Code : deux manifestes JSON, une commande et une
+# skill en Markdown à frontmatter. Rien à compiler, rien à tester — mais l'outil
+# canonique qui LIT ce format sait le valider : `claude plugin validate --strict`
+# (--strict est documenté « Use in CI »). On valide les deux manifestes puis les
+# composants (skills/, commands/), et on vérifie à la main la seule chose que
+# validate ne résout pas : que la `source` de chaque entrée du marketplace existe.
+#
+# Défauts réels attrapés, mesurés le 2026-09-03 en les injectant :
+#   - plugin.json non parsable, ou `name` absent → erreur ;
+#   - frontmatter de commands/setup.md cassé (« Frontmatter must be a YAML mapping ») ;
+#   - `description:` retirée de skills/oto/SKILL.md → avertissement, rouge en --strict
+#     (une skill sans description ne se déclenche jamais : c'est un plugin mort) ;
+#   - `source` du marketplace pointant un dossier absent → attrapé par l'étape suivante,
+#     PAS par validate.
+#
+# Le CLI est épinglé : une release amont ne doit pas rougir ce repo sans qu'on
+# l'ait décidé. Bump volontaire quand on veut les règles de validation récentes.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Installer le CLI qui lit ce format
+        run: npm install -g @anthropic-ai/claude-code@2.1.259
+      - name: Valider les manifestes et les composants
+        run: |
+          claude plugin validate .claude-plugin/plugin.json --strict
+          claude plugin validate .claude-plugin/marketplace.json --strict
+          claude plugin validate skills --strict
+          claude plugin validate commands --strict
+      - name: La source de chaque plugin du marketplace existe
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          m = json.load(open('.claude-plugin/marketplace.json'))
+          entries = m.get('plugins') or []
+          if not entries:
+              sys.exit('marketplace.json ne déclare aucun plugin')
+          bad = []
+          for p in entries:
+              src = p.get('source')
+              if not isinstance(src, str):
+                  continue  # source objet (git/github) : hors de portée de ce contrôle
+              if not os.path.isdir(src):
+                  bad.append(f"{p.get('name')}: source introuvable → {src}")
+              elif not os.path.isfile(os.path.join(src, '.claude-plugin', 'plugin.json')):
+                  bad.append(f"{p.get('name')}: {src} n'a pas de .claude-plugin/plugin.json")
+          if bad:
+              sys.exit('✗ ' + '\n✗ '.join(bad))
+          print(f'✓ {len(entries)} source(s) de plugin résolue(s)')
+          PY
