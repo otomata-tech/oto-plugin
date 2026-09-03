@@ -1,6 +1,5 @@
 ---
 name: oto
-description: "Oto — B2B automation toolkit: research companies & people, LinkedIn sourcing AND outreach (connect/message), enrich contacts (email/phone), drive Attio/Notion CRM, Google Workspace, Slack/WhatsApp. Use whenever the user wants company/people intelligence, prospecting, LinkedIn automation, contact enrichment, or to act on a CRM/inbox from Claude."
 ---
 
 # Oto
