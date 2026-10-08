@@ -36,6 +36,8 @@ jobs:
           claude plugin validate .claude-plugin/marketplace.json --strict
           claude plugin validate skills --strict
           claude plugin validate commands --strict
+      - name: Le garde-fou d'envoi demande avant chaque envoi, laisse passer les lectures
+        run: node --test "tests/*.test.mjs"
       - name: La source de chaque plugin du marketplace existe
         run: |
           python3 - <<'PY'

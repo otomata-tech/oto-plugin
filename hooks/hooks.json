@@ -1,0 +1,19 @@
+{
+  "description": "Asks before any outbound message (email, chat, social) leaves through an Oto tool or the oto CLI.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-outbound.mjs\"" }
+        ]
+      },
+      {
+        "matcher": "mcp__.*__(email_send|gmail_compose|outlook_compose|slack_post_message|whatsapp_send_message|whatsapp_chat|linkedin_unipile_chat|linkedin_unipile_network|linkedin_unipile_post|teams_message|chat_send|telegram_send_message|instagram_send_message|messenger_send_message|twitter_send_message|unipile_send_message|unipile_send_invitation|apollo_email|hellostock_demande_send|oto_call)$",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-outbound.mjs\"" }
+        ]
+      }
+    ]
+  }
+}

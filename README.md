@@ -5,6 +5,7 @@ The Claude Code companion for the Oto B2B automation toolkit: the hosted **Oto M
 Installing this plugin gives you:
 
 - **One universal `oto` skill** — teaches Claude to discover and drive the toolkit (it does *not* duplicate per-tool manuals: the MCP catalogue is served by `oto_list_my_tools`, and the CLI is self-documenting via `--help`).
+- **An outbound guard** — before any message leaves (email, WhatsApp, LinkedIn DM / invitation / post, Slack, Teams, Apollo or HelloStock send, also through `oto_call`), Claude Code asks you first, even in auto mode. Reads, drafts and dry runs pass freely; anything unreadable asks. See `hooks/`.
 - **`/oto:setup`** — installs the `oto` CLI (`pipx install "oto-cli[browser]"`) and connects the user's LinkedIn account.
 
 The **Oto MCP** is *not* declared here on purpose — you add it once in **claude.ai** (so it's available in claude.ai **and** syncs into Claude Code), avoiding a duplicate connector. See the bootstrap below.
@@ -43,6 +44,8 @@ Steps 1 and 4 are the only irreducibly manual actions. LinkedIn — sourcing **a
 .claude-plugin/{plugin,marketplace}.json   # manifest + local marketplace
 skills/oto/SKILL.md                         # the universal skill
 commands/setup.md                           # /oto:setup
+hooks/{hooks.json,guard-outbound.mjs}       # the outbound guard (Node, no dependency)
+tests/                                      # node --test "tests/*.test.mjs"
 ```
 
 The tools live in the `oto-cli` package (PyPI) and the Oto MCP server — this plugin only bundles the skill (doctrine) + the CLI setup command.

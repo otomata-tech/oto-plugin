@@ -1,7 +1,7 @@
 {
   "name": "oto",
-  "version": "0.2.0",
-  "description": "Oto — CLI companion for Claude Code: a universal skill that teaches Claude to drive the `oto` toolkit (company data, LinkedIn sourcing & outreach, CRM, enrichment, Google, messaging — self-documented via --help) + an /oto:setup install command. The Oto MCP connector is added separately in claude.ai.",
+  "version": "0.3.0",
+  "description": "Oto — CLI companion for Claude Code: a universal skill that teaches Claude to drive the `oto` toolkit (company data, LinkedIn sourcing & outreach, CRM, enrichment, Google, messaging — self-documented via --help) + an /oto:setup install command + a guard that asks before any outbound message (email, chat, social) leaves. The Oto MCP connector is added separately in claude.ai.",
   "author": {
     "name": "Otomata",
     "url": "https://otomata.tech"
