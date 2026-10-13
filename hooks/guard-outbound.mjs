@@ -53,11 +53,13 @@ export function sends(name, args) {
     case "linkedin_unipile_send": // a DM, a reaction, a thread's state
     case "linkedin_unipile_invite": // send, answer or withdraw an invitation
     case "linkedin_unipile_publish": // a post, a comment, a reaction on a post
+    case "teams_send": // a post or a reply in a channel
       return true;
-    // Readers whose old send ops are served until 10/12/2026 (oto-backend#1189).
+    // Readers whose old send ops are served until 10/12/2026 (oto-backend#1189, #1231).
     case "whatsapp_chat":
     case "telegram_chat":
     case "instagram_chat":
+    case "chat_message": // Google Chat, oto-backend#1231
       return op === "send";
     case "linkedin_unipile_chat":
       return op === "send" || op === "update" || op === "react";
