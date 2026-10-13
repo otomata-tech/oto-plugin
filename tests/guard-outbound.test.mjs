@@ -9,11 +9,33 @@ import { decide } from "../hooks/guard-outbound.mjs";
 const mcp = (name, input = {}) => ({ tool_name: `mcp__claude_ai_Oto__${name}`, tool_input: input });
 
 const ASK = [
-  ["whatsapp send", mcp("whatsapp_chat", { op: "send", text: "x" })],
-  ["linkedin dm", mcp("linkedin_unipile_chat", { op: "send" })],
-  ["linkedin invite", mcp("linkedin_unipile_network", { op: "invite" })],
-  ["linkedin publish", mcp("linkedin_unipile_post", { op: "create" })],
-  ["linkedin comment", mcp("linkedin_unipile_post", { op: "comment" })],
+  ["whatsapp send", mcp("whatsapp_send", { text: "x", chat_id: "c" })],
+  ["telegram send", mcp("telegram_send", { text: "x", recipient_id: "r" })],
+  ["instagram send", mcp("instagram_send", {})],
+  ["linkedin dm", mcp("linkedin_unipile_send", { text: "x" })],
+  ["linkedin dm, explicit op", mcp("linkedin_unipile_send", { op: "send" })],
+  ["linkedin message reaction", mcp("linkedin_unipile_send", { op: "react" })],
+  ["linkedin thread update", mcp("linkedin_unipile_send", { op: "update" })],
+  ["linkedin invite", mcp("linkedin_unipile_invite", { provider_id: "p" })],
+  ["linkedin accept invitation", mcp("linkedin_unipile_invite", { op: "handle" })],
+  ["linkedin withdraw invitation", mcp("linkedin_unipile_invite", { op: "cancel" })],
+  ["linkedin publish", mcp("linkedin_unipile_publish", { text: "x" })],
+  ["linkedin comment", mcp("linkedin_unipile_publish", { op: "comment" })],
+  ["linkedin post reaction", mcp("linkedin_unipile_publish", { op: "react" })],
+  // A reader's old send op is still served until 10/12/2026 (oto-backend#1189).
+  ["whatsapp_chat old send op", mcp("whatsapp_chat", { op: "send", text: "x" })],
+  ["telegram_chat old send op", mcp("telegram_chat", { op: "send" })],
+  ["instagram_chat old send op", mcp("instagram_chat", { op: "send" })],
+  ["linkedin_unipile_chat old send op", mcp("linkedin_unipile_chat", { op: "send" })],
+  ["linkedin_unipile_chat old update op", mcp("linkedin_unipile_chat", { op: "update" })],
+  ["linkedin_unipile_chat old react op", mcp("linkedin_unipile_chat", { op: "react" })],
+  ["linkedin_unipile_network old invite op", mcp("linkedin_unipile_network", { op: "invite" })],
+  ["linkedin_unipile_network old handle op", mcp("linkedin_unipile_network", { op: "handle" })],
+  ["linkedin_unipile_network old cancel op", mcp("linkedin_unipile_network", { op: "cancel" })],
+  ["linkedin_unipile_post old create op", mcp("linkedin_unipile_post", { op: "create" })],
+  ["linkedin_unipile_post old comment op", mcp("linkedin_unipile_post", { op: "comment" })],
+  ["linkedin_unipile_post old react op", mcp("linkedin_unipile_post", { op: "react" })],
+  ["oto_call wraps an old send op", mcp("oto_call", { name: "whatsapp_chat", arguments: { op: "send" } })],
   ["gmail compose", mcp("gmail_compose", {})],
   ["outlook send", mcp("outlook_compose", { mode: "send" })],
   ["teams post", mcp("teams_message", { op: "post" })],
@@ -25,20 +47,25 @@ const ASK = [
   ["hellostock real", mcp("hellostock_demande_send", { dry_run: false })],
   ["hellostock 'False'", mcp("hellostock_demande_send", { dry_run: "False" })],
   ["hellostock 0", mcp("hellostock_demande_send", { dry_run: 0 })],
-  ["oto_call wraps a send", mcp("oto_call", { name: "whatsapp_chat", arguments: { op: "send" } })],
-  ["oto_call arguments not an object", mcp("oto_call", { name: "whatsapp_chat", arguments: "{\"op\":\"send\"}" })],
+  ["oto_call wraps a send", mcp("oto_call", { name: "whatsapp_send", arguments: { text: "x" } })],
+  ["oto_call wraps an invite", mcp("oto_call", { name: "linkedin_unipile_invite", arguments: {} })],
+  ["oto_call arguments not an object", mcp("oto_call", { name: "whatsapp_send", arguments: "{\"text\":\"x\"}" })],
   ["oto_call without a name", mcp("oto_call", { arguments: {} })],
   ["oto cli gmail send", { tool_name: "Bash", tool_input: { command: "oto -a otomata google gmail send x" } }],
   ["no tool_name", { tool_input: {} }],
-  ["tool_input not an object", { tool_name: "mcp__x__whatsapp_chat", tool_input: "op=send" }],
+  ["tool_input not an object", { tool_name: "mcp__x__whatsapp_send", tool_input: "text=x" }],
   ["not an object", "garbage"],
 ];
 
 const PASS = [
   ["whatsapp list", mcp("whatsapp_chat", { op: "list" })],
   ["whatsapp default op", mcp("whatsapp_chat", {})],
+  ["linkedin threads", mcp("linkedin_unipile_chat", { op: "read" })],
   ["linkedin relations", mcp("linkedin_unipile_network", { op: "relations" })],
+  ["linkedin invitations", mcp("linkedin_unipile_network", { op: "invitations" })],
   ["linkedin feed", mcp("linkedin_unipile_post", {})],
+  ["telegram list", mcp("telegram_chat", { op: "list" })],
+  ["instagram read", mcp("instagram_chat", { op: "read" })],
   ["outlook draft", mcp("outlook_compose", {})],
   ["teams list", mcp("teams_message", { op: "list" })],
   ["apollo dry run", mcp("apollo_email", { op: "send", dry_run: true })],
@@ -61,7 +88,7 @@ const SCRIPT = new URL("../hooks/guard-outbound.mjs", import.meta.url).pathname;
 const run = (stdin) => execFileSync("node", [SCRIPT], { input: stdin }).toString();
 
 test("the script answers ask on stdout, in the hook format", () => {
-  const out = JSON.parse(run(JSON.stringify(mcp("whatsapp_chat", { op: "send" }))));
+  const out = JSON.parse(run(JSON.stringify(mcp("whatsapp_send", { text: "x" }))));
   assert.equal(out.hookSpecificOutput.hookEventName, "PreToolUse");
   assert.equal(out.hookSpecificOutput.permissionDecision, "ask");
 });

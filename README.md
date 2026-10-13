@@ -12,7 +12,7 @@ The **Oto MCP** is *not* declared here on purpose — you add it once in **claud
 
 ## Surfaces
 
-- **MCP** (hosted, added in claude.ai): company data, CRM, search, enrichment, Gmail, and LinkedIn — sourcing **and outreach** (`linkedin_unipile_network` op `invite`, `linkedin_unipile_chat` op `send`). The LinkedIn session is held by Unipile, our provider; nothing runs on your machine.
+- **MCP** (hosted, added in claude.ai): company data, CRM, search, enrichment, Gmail, and LinkedIn — sourcing **and outreach** (`linkedin_unipile_invite`, `linkedin_unipile_send`, `linkedin_unipile_publish` — each send is its own tool; the readers' old send ops are deprecated, removed after 10/12/2026). The LinkedIn session is held by Unipile, our provider; nothing runs on your machine.
 - **CLI** (local, via this plugin's skill + setup): the same toolkit as composable commands — for shell pipelines, and as a fallback when the MCP is unavailable.
 
 ## Install

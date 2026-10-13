@@ -9,7 +9,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*__(email_send|gmail_compose|outlook_compose|slack_post_message|whatsapp_send_message|whatsapp_chat|linkedin_unipile_chat|linkedin_unipile_network|linkedin_unipile_post|teams_message|chat_send|telegram_send_message|instagram_send_message|messenger_send_message|twitter_send_message|unipile_send_message|unipile_send_invitation|apollo_email|hellostock_demande_send|oto_call)$",
+        "matcher": "mcp__.*__(email_send|gmail_compose|outlook_compose|slack_post_message|whatsapp_send_message|whatsapp_send|telegram_send|instagram_send|linkedin_unipile_send|linkedin_unipile_invite|linkedin_unipile_publish|whatsapp_chat|telegram_chat|instagram_chat|linkedin_unipile_chat|linkedin_unipile_network|linkedin_unipile_post|teams_message|chat_send|telegram_send_message|instagram_send_message|messenger_send_message|twitter_send_message|unipile_send_message|unipile_send_invitation|apollo_email|hellostock_demande_send|oto_call)$",
         "hooks": [
           { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-outbound.mjs\"" }
         ]

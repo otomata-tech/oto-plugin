@@ -46,12 +46,18 @@ Unipile, our provider, not on the user's machine. No local browser, no cookie in
    LinkedIn session needed and billed per credit: `linkedin_aiark_search`,
    `linkedin_aiark_person`.
 
-3. **Outreach** (the cold-prospecting flow):
-   - `linkedin_unipile_network(op="invite", provider_id=…, message=…)` → connection
-     **invitation** (note ≤300 chars). The cold-outreach primitive; `provider_id` comes
-     from a `linkedin_unipile_search` or `linkedin_unipile_profile` result.
-   - `linkedin_unipile_chat(op="send", recipient_id=…, text=…)` → **direct message** in a
-     new thread; pass `chat_id=` instead to reply in an existing one.
+3. **Outreach** (the cold-prospecting flow) — everything that acts at someone else lives
+   in its own tool. The readers' old send ops (`linkedin_unipile_chat` op=send,
+   `_network` op=invite, `_post` op=create…) are deprecated, removed after 10/12/2026:
+   never use them.
+   - `linkedin_unipile_invite(provider_id=…, message=…)` → connection **invitation**
+     (note ≤300 chars). The cold-outreach primitive; `provider_id` comes from a
+     `linkedin_unipile_search` or `linkedin_unipile_profile` result. `op="handle"` /
+     `op="cancel"` answer or withdraw one.
+   - `linkedin_unipile_send(recipient_id=…, text=…)` → **direct message** in a new
+     thread; pass `chat_id=` instead to reply in an existing one.
+   - `linkedin_unipile_publish` → a post, a comment, a reaction. WhatsApp, Telegram,
+     Instagram: `whatsapp_send` / `telegram_send` / `instagram_send`.
    - Typical flow: **find** (search) → **invite** with a note → once accepted, **send**.
 
 4. **Local fallback**: the CLI still drives a real Chrome under `oto browser linkedin …`
